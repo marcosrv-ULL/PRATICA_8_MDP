@@ -48,6 +48,6 @@ MDPInstance InstanceParser::parse() {
         }
     }
 
-    MDPInstance mdp1(elementos);
+    MDPInstance mdp1(elementos, 3);
     return mdp1;
 }

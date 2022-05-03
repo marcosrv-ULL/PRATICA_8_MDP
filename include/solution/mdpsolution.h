@@ -3,31 +3,23 @@
 
 #include "../instance/mdpinstance.h"
 #include <iostream>
-#include <vector>
+#include <set>
+#include <cmath>
 
-class VRPSolution {
+
+class MDPSolution {
 private:
-  std::vector<std::vector<int>> _camino;
-  MDPInstance mdp1;
-  double _cost;
-
+  std::set<int> _conjunto;
+  MDPInstance _instancia;
+  int m;
+  double _distancia;
 public:
-  VRPSolution() = default;
-  VRPSolution(VRPInstance &, int n_vehiculos);
-  void addToPath(int ruta, int nodo);
-  void addToPath(int ruta, int orden, int nodo);
-  void insertAt(int ruta, int posicion, int nodo);
-  void reInsertAt(int ruta, int posicion, int pos_inicial);
-  void interReInsertAt(int ruta, int ruta2, int posicion, int pos_inicial);
-  void swap(int ruta, int pos1, int pos2);
-  void interSwap(int ruta1, int ruta2, int pos1, int pos2);
-  bool isFull(int ruta);
-  int last(int ruta);
-  int getRutaLength(int ruta);
-  double cost();
-  void setCost(double);
-  std::vector<std::vector<int>> camino();
-  void endSolution();
+  MDPSolution() = default;
+  MDPSolution(MDPInstance&);
+  double distance();
+  bool addToSet(int indice);
+  bool removeFromSet(int indice);
+  int getM();
   void showSolution();
 };
 

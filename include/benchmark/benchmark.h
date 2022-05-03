@@ -2,15 +2,15 @@
 #define BENCHMARK_T
 
 #include "../algoritmo/algoritmo.h"
-#include "../instance/vrpinstance.h"
-#include "../solution/vrpsolution.h"
+#include "../instance/mdpinstance.h"
+#include "../solution/mdpsolution.h"
 #include <chrono>
 #include <iostream>
 #include <string>
 
 class Benchmark {
 public:
-  static std::string run(Algoritmo *alg1, VRPInstance &);
+  static std::string run(Algoritmo *alg1, MDPInstance&);
 };
 
 #endif

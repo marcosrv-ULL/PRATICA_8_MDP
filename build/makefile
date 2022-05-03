@@ -17,7 +17,7 @@ execution:
 compile_and_exec: main
 	$(PROGRAM)
 
-main: main.o instanceparser.o IOController.o mdpinstance.o
+main: main.o instanceparser.o IOController.o mdpinstance.o mdpsolution.o greedy.o benchmark.o
 	$(CC) $(CFLAGS) -o $(PROGRAM) $(BIN)/*.o 
 
 main.o: $(SRC)/main.cpp 
@@ -34,3 +34,12 @@ instanceparser.o: $(SRC)/instance/instanceparser.cpp
 
 mdpinstance.o: $(SRC)/instance/mdpinstance.cpp 
 	$(CC) $(CFLAGS) -c $(SRC)/instance/mdpinstance.cpp -o $(BIN)/mdpinstance.o
+
+mdpsolution.o: $(SRC)/solution/mdpsolution.cpp 
+	$(CC) $(CFLAGS) -c $(SRC)/solution/mdpsolution.cpp -o $(BIN)/mdpsolution.o
+
+greedy.o: $(SRC)/algoritmo/greedy.cpp 
+	$(CC) $(CFLAGS) -c $(SRC)/algoritmo/greedy.cpp -o $(BIN)/greedy.o
+
+benchmark.o: $(SRC)/benchmark/benchmark.cpp 
+	$(CC) $(CFLAGS) -c $(SRC)/benchmark/benchmark.cpp -o $(BIN)/benchmark.o

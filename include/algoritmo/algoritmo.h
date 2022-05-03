@@ -12,7 +12,7 @@ const double MAX_DOUBLE = 100000;
 class Algoritmo {
     public:
         Algoritmo() = default;
-        virtual VRPSolution solve(VRPInstance) = 0;
+        virtual MDPSolution solve(MDPInstance&) = 0;
 
 };
 
