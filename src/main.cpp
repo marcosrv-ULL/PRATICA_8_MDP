@@ -1,4 +1,5 @@
 #include "../include/algoritmo/greedy.h"
+#include "../include/algoritmo/grasp.h"
 #include "../include/algoritmo/localsearch.h"
 #include "../include/algoritmo/localsearch_II.h"
 #include "../include/benchmark/benchmark.h"
@@ -27,6 +28,7 @@ int main(int argc, char **argv) {
   MDPInstance instancia = ins1.parse();
   instancia.showInstance();
   GreedyConstructivo *greed1 = new GreedyConstructivo();
+  GRASP* grasp1 = new GRASP();
   LocalSearch *localsearch = new LocalSearch;
   LocalSearch_II* localsearch2 = new LocalSearch_II;
   MDPSolution greedSolution = greed1->solve(instancia);
@@ -40,6 +42,9 @@ int main(int argc, char **argv) {
   std::cout << "Greed Mejora local II: " << std::endl;
   localsearch2->setSolucionInicial(greedSolution2);
   result = Benchmark::run(localsearch2, instancia);
+  std::cout << result << std::endl;
+  std::cout << "GRASP Solution: " << std::endl;
+  result = Benchmark::run(grasp1, instancia);
   std::cout << result << std::endl;
   return 0;
 }

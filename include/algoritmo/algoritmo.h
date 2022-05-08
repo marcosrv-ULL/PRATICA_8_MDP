@@ -4,6 +4,7 @@
 #include "../instance/mdpinstance.h"
 #include "../solution/mdpsolution.h"
 #include <set>
+#include <vector>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h> 
 
@@ -13,7 +14,7 @@ class Algoritmo {
     public:
         Algoritmo() = default;
         virtual MDPSolution solve(MDPInstance&) = 0;
-
+        std::vector<double> centro(std::vector<std::vector<double>>&);
 };
 
 #endif

@@ -17,7 +17,7 @@ execution:
 compile_and_exec: main
 	$(PROGRAM)
 
-main: main.o instanceparser.o IOController.o mdpinstance.o mdpsolution.o greedy.o benchmark.o localsearch.o localsearch_II.o
+main: main.o instanceparser.o IOController.o mdpinstance.o mdpsolution.o greedy.o benchmark.o localsearch.o localsearch_II.o grasp.o algoritmo.o
 	$(CC) $(CFLAGS) -o $(PROGRAM) $(BIN)/*.o 
 
 main.o: $(SRC)/main.cpp 
@@ -49,3 +49,9 @@ localsearch.o: $(SRC)/algoritmo/localsearch.cpp
 
 localsearch_II.o: $(SRC)/algoritmo/localsearch_II.cpp 
 	$(CC) $(CFLAGS) -c $(SRC)/algoritmo/localsearch_II.cpp -o $(BIN)/localsearch_II.o
+
+grasp.o: $(SRC)/algoritmo/grasp.cpp 
+	$(CC) $(CFLAGS) -c $(SRC)/algoritmo/grasp.cpp -o $(BIN)/grasp.o
+
+algoritmo.o: $(SRC)/algoritmo/algoritmo.cpp 
+	$(CC) $(CFLAGS) -c $(SRC)/algoritmo/algoritmo.cpp -o $(BIN)/algoritmo.o

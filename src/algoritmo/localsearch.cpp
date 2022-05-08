@@ -15,7 +15,7 @@ MDPSolution LocalSearch::solve(MDPInstance& instancia) {
             minimo_di_elemento.first = elemento_no_presente;
             minimo_di_elemento.second = valor;
             mejora = true;
-            break;-*
+            break;
         }
     }
     solution.addToSet(minimo_di_elemento.first);
