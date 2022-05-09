@@ -13,6 +13,7 @@ private:
   int _m_max;
   int k;
   int n;
+  std::string name;
 public:
   MDPInstance() = default;
   MDPInstance(std::vector<std::vector<double>> elementos, int m_max);
@@ -24,6 +25,8 @@ public:
   int getMMax();
   int getK();
   int getN();
+  void setName(std::string);
+  void toFile();
   void showInstance();
 };
 

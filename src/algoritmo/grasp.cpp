@@ -25,7 +25,6 @@ MDPSolution GRASP::construct(MDPInstance& instancia) {
   
   std::vector<std::vector<double>> elementos_restantes = instancia.elementos();
   MDPSolution solution(instancia);
-  int n = elementos_restantes.size();
   std::vector<double> centro1 = centro(elementos_restantes);
   
   const double alpha = 0.5;

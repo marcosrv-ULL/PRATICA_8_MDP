@@ -4,31 +4,15 @@
 #include "../include/algoritmo/localsearch_II.h"
 #include "../include/benchmark/benchmark.h"
 #include "../include/instance/instanceparser.h"
+#include "../include/factory/mdpfactory.h"
 
 int main1(int argc, char **argv) {
   std::string input_file = argv[1];
   std::string m = argv[2];
   InstanceParser ins1(input_file, std::stoi(m));
   MDPInstance instancia = ins1.parse();
-  instancia.showInstance();
   GreedyConstructivo *greed1 = new GreedyConstructivo();
-  MDPSolution solucion = greed1->solve(instancia);
-  solucion.showSolution();
-  solucion.exchange(11, 3);
-  solucion.exchange(3, 11);
-  solucion.showSolution();
-  solucion.showConjuntiSinSeleccionar();
-  return 0;
-}
-
-int main(int argc, char **argv) {
-  std::string input_file = argv[1];
-  std::string m = argv[2];
-  InstanceParser ins1(input_file, std::stoi(m));
-  MDPInstance instancia = ins1.parse();
-  instancia.showInstance();
-  GreedyConstructivo *greed1 = new GreedyConstructivo();
-  GRASP* grasp1 = new GRASP(1000, new LocalSearch);
+  GRASP* grasp1 = new GRASP(100, new LocalSearch);
   MDPSolution greedSolution = greed1->solve(instancia);
   MDPSolution greedSolution2 = greed1->solve(instancia);
   std::cout << "Greed Solution: " << std::endl;
@@ -40,5 +24,18 @@ int main(int argc, char **argv) {
   std::cout << "GRASP Solution: " << std::endl;
   std::string result = Benchmark::run(grasp1, instancia);
   std::cout << result << std::endl;
+  return 0;
+}
+
+int main(int argc, char **argv) {
+  MDPFactory::generate(10000, 3, 0, 15).toFile();
+  MDPFactory::generate(10000, 2, 0, 15).toFile();
+  MDPFactory::generate(10000, 4, 0, 15).toFile();
+  MDPFactory::generate(20000, 3, 0, 15).toFile();
+  MDPFactory::generate(20000, 2, 0, 15).toFile();
+  MDPFactory::generate(20000, 4, 0, 15).toFile();
+  MDPFactory::generate(30000, 3, 0, 15).toFile();
+  MDPFactory::generate(30000, 2, 0, 15).toFile();
+  MDPFactory::generate(30000, 4, 0, 15).toFile();
   return 0;
 }

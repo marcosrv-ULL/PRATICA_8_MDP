@@ -3,7 +3,6 @@
 MDPSolution GreedyConstructivo::solve(MDPInstance& instancia) {
   std::vector<std::vector<double>> elementos_restantes = instancia.elementos();
   MDPSolution solution(instancia);
-  int n = elementos_restantes.size();
   std::vector<double> centro1 = centro(elementos_restantes);
   std::vector<std::vector<double>> solucion = {};
   do {

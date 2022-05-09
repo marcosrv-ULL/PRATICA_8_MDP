@@ -1,4 +1,5 @@
 #include "../../include/instance/mdpinstance.h"
+#include <string>
 
 MDPInstance::MDPInstance(std::vector<std::vector<double>> elementos, int m_max) {
   _elementos = elementos;
@@ -9,6 +10,24 @@ MDPInstance::MDPInstance(std::vector<std::vector<double>> elementos, int m_max) 
 
 std::vector<double> MDPInstance::elemento(int indice) {
   return _elementos[indice];
+}
+
+void MDPInstance::setName(std::string nombre) {
+  name = nombre;
+}
+
+void MDPInstance::toFile() {
+  std::string instanciastring = "";
+  instanciastring += std::to_string(_elementos.size()) + " \n";
+  instanciastring += std::to_string(_elementos[0].size()) + " \n";
+  for (auto elemento: _elementos) {
+    for(auto coordenada: elemento) {
+      instanciastring += std::to_string(coordenada) + " ";
+    }
+    instanciastring +=  " \n";
+  }
+  std::string name = "max_div_" + std::to_string(n) + "_" + std::to_string(k) + ".txt";
+  IOController::toFile(name, instanciastring);
 }
 
 double MDPInstance::distance(int i, int j) {
