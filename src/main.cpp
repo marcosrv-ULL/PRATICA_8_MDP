@@ -6,28 +6,26 @@
 #include "../include/instance/instanceparser.h"
 #include "../include/factory/mdpfactory.h"
 
-int main1(int argc, char **argv) {
+int main(int argc, char **argv) {
   std::string input_file = argv[1];
   std::string m = argv[2];
   InstanceParser ins1(input_file, std::stoi(m));
   MDPInstance instancia = ins1.parse();
   GreedyConstructivo *greed1 = new GreedyConstructivo();
   GRASP* grasp1 = new GRASP(100, new LocalSearch);
+  GRASP* grasp2 = new GRASP(100, new LocalSearch_II);
   MDPSolution greedSolution = greed1->solve(instancia);
   MDPSolution greedSolution2 = greed1->solve(instancia);
-  std::cout << "Greed Solution: " << std::endl;
-  greedSolution.showSolution();
-  std::cout << "\nGreed Mejora local: Metodo Ansioso" << std::endl;
-  (new LocalSearch)->solve(greedSolution, instancia).showSolution();
-  std::cout << "\nGreed Mejora local: Metodo Greedy" << std::endl;
-  (new LocalSearch_II)->solve(greedSolution2, instancia).showSolution();
-  std::cout << "GRASP Solution: " << std::endl;
-  std::string result = Benchmark::run(grasp1, instancia);
-  std::cout << result << std::endl;
+  std::cout << "Algoritmo " << "\t\t\t" << "m \t" << "Distancia: \t" << std::endl; 
+  std::cout << "Greed Solution: \t\t" << m << "\t"<< greedSolution.distance() << "\t" << std::endl;
+  std::cout << "Local Search: Metodo Ansioso \t" << m << "\t" << (new LocalSearch)->solve(greedSolution, instancia).distance() << "\t" << std::endl;
+  std::cout << "Local Search: Metodo Greedy \t" << m << "\t" << (new LocalSearch_II)->solve(greedSolution, instancia).distance() << "\t" << std::endl;  
+  std::cout << "GRASP: Mejora ansiosa \t\t" << m << "\t" << grasp1->solve(instancia).distance() << "\t" << std::endl;    
+  std::cout << "GRASP: Mejora Greedy \t\t" << m << "\t" << grasp2->solve(instancia).distance() << "\t" << std::endl;    
   return 0;
 }
 
-int main(int argc, char **argv) {
+int main1(int argc, char **argv) {
   MDPFactory::generate(10000, 3, 0, 15).toFile();
   MDPFactory::generate(10000, 2, 0, 15).toFile();
   MDPFactory::generate(10000, 4, 0, 15).toFile();
