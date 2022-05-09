@@ -4,18 +4,15 @@
 #include "../instance/mdpinstance.h"
 #include "../solution/mdpsolution.h"
 #include "greedy.h"
-#include "algoritmo.h"
+#include "localsearchInterfaz.h"
 #include <set>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h> 
 
-class LocalSearch: public Algoritmo {
-    private:
-        MDPSolution solucion_inicial;
+class LocalSearch: public LocalSearchInterfaz {
     public:
         LocalSearch() = default;
-        MDPSolution solve(MDPInstance&);
-        void setSolucionInicial(MDPSolution& solucion_inicial);
+        MDPSolution solve(MDPSolution& solucion_inicial, MDPInstance&);
 };
 
 #endif

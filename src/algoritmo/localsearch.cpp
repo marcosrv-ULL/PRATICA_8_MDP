@@ -1,6 +1,6 @@
 #include "../../include/algoritmo/localsearch.h"
 
-MDPSolution LocalSearch::solve(MDPInstance& instancia) {
+MDPSolution LocalSearch::solve(MDPSolution& solucion_inicial, MDPInstance& instancia) {
   MDPSolution solution = solucion_inicial;
   MDPSolution bestSolution = solution;
   bool mejora = true;
@@ -22,8 +22,4 @@ MDPSolution LocalSearch::solve(MDPInstance& instancia) {
   } while (mejora);
   if (!mejora) solution.addToSet(minimo_di_elemento.first);
   return solution;
-}
-
-void LocalSearch::setSolucionInicial(MDPSolution& solucion) {
-    solucion_inicial = solucion;
 }

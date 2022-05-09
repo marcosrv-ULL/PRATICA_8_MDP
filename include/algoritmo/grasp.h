@@ -4,15 +4,17 @@
 #include "../instance/mdpinstance.h"
 #include "../solution/mdpsolution.h"
 #include "algoritmo.h"
-#include "localsearch.h"
-#include "localsearch_II.h"
+#include "localsearchInterfaz.h"
 #include <set>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h> 
 
 class GRASP : public Algoritmo{
+    private:
+     LocalSearchInterfaz* localsearch;
+     int max_iter;
     public:
-        GRASP() = default;
+        GRASP(int max_iter, LocalSearchInterfaz* busqueda);
         MDPSolution solve(MDPInstance&);
         MDPSolution construct(MDPInstance&);
 };
