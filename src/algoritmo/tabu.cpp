@@ -22,7 +22,7 @@ MDPSolution Tabu::solve(MDPInstance& instancia) {
         double criterio_value = 0;
         for (auto elemento_no_presente: currentSolution.conjunto_sin_seleccionar()) {
             double distancia_a_centro = instancia.distance(centro1, instancia.elemento(elemento_no_presente));
-            double criterio = distancia_a_centro - (beta * distancia_a_centro * (frecuencia[elemento_no_presente]/max_frecuencia)) + (delta * distancia_a_centro * (calidad[elemento_no_presente] / max_calidad));
+            double criterio = distancia_a_centro - ( beta * distancia_a_centro * (frecuencia[elemento_no_presente]/max_frecuencia)) + (delta * distancia_a_centro * (calidad[elemento_no_presente] / max_calidad));
             if ( criterio > criterio_value) {
                 criterio_value = criterio;
                 mas_lejano = elemento_no_presente;
