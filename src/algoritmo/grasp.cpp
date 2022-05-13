@@ -10,7 +10,7 @@ MDPSolution GRASP::solve(MDPInstance& instancia) {
   std::srand(time(NULL));
   std::vector<std::vector<double>> elementos_restantes = instancia.elementos();
   MDPSolution bestSolution = construct(instancia);
-  int iteracion = 1;
+  int iteracion = 100;
   do {
     MDPSolution solution = construct(instancia);
     solution = localsearch->solve(solution, instancia);
