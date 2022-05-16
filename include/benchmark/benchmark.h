@@ -10,7 +10,7 @@
 
 class Benchmark {
 public:
-  static std::string run(Algoritmo *alg1, MDPInstance&);
+  static std::pair<std::string, MDPSolution> run(Algoritmo *alg1, MDPInstance&);
 };
 
 #endif
