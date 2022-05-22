@@ -8,12 +8,20 @@
 #include <set>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>
+#include <algorithm>
+#include <functional>
 #include "localsearch.h"
 #include "grasp.h"
 
 class Nodo
 {
 public:
+    Nodo(int c, Nodo* n, MDPSolution& s) {
+        cota = c;
+        padre = n;
+        activo = true;
+        solucion = s;
+    }
     int cota;
     MDPSolution solucion;
     Nodo* padre;
@@ -32,18 +40,25 @@ public:
         activo = false;
 
     }
+
+    bool operator > (const Nodo& str) const
+    {
+        return (cota > str.cota);
+    }
 };
+
+
 
 class Ramificanacion : public Algoritmo {
     private:
      LocalSearchInterfaz* localsearch;
      int max_iter;
     public:
-        Ramificanacion(int max_iter, LocalSearchInterfaz* busqueda);
+        Ramificanacion() = default;
         MDPSolution solve(MDPInstance&);
         MDPSolution construct(MDPInstance&);
         void generateChilds(Nodo* padre, MDPInstance&, std::vector<Nodo*> nodosActivos);
-        double z(MDPSolution& solucion, MDPInstance& instancia);
+        double UB(MDPSolution& solucion, MDPInstance& instancia);
 };
 
 #endif

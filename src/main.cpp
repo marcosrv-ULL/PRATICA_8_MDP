@@ -3,6 +3,7 @@
 #include "../include/algoritmo/tabu.h"
 #include "../include/algoritmo/localsearch.h"
 #include "../include/algoritmo/localsearch_II.h"
+#include "../include/algoritmo/ramificacion.h"
 #include "../include/benchmark/benchmark.h"
 #include "../include/instance/instanceparser.h"
 #include "../include/factory/mdpfactory.h"
@@ -23,6 +24,7 @@ int main(int argc, char **argv) {
       GRASP* grasp1 = new GRASP(100, new LocalSearch);
       GRASP* grasp2 = new GRASP(100, new LocalSearch_II);
       Tabu* tabu1 = new Tabu(100, new LocalSearch);
+      Ramificanacion* ram1 = new Ramificanacion;
       MDPSolution greedSolution = greed1->solve(instancia);
       MDPSolution greedSolution2 = greed1->solve(instancia);
       std::pair<std::string, MDPSolution> resultadoGreed = Benchmark::run(greed1, instancia);
@@ -33,62 +35,13 @@ int main(int argc, char **argv) {
       std::cout << "GRASP: Mejora Greedy \t\t" << m << "\t" << resultadoGRASP2.second.distance() << "\t\t" << resultadoGRASP2.first << std::endl;
       std::pair<std::string, MDPSolution> resultadoTABU1 = Benchmark::run(tabu1, instancia);
       std::cout << "Tabu: Version I \t\t" << m << "\t" << resultadoTABU1.second.distance() << "\t\t" << resultadoTABU1.first << std::endl;
+      std::pair<std::string, MDPSolution> resultadoram1 = Benchmark::run(ram1, instancia);
+      std::cout << "Ramificacion \t\t\t" << m << "\t" << resultadoram1.second.distance() << "\t\t" << resultadoram1.first << std::endl;
     }
     std::cout << std::endl;
   }
   
-  if (argv[1] != nullptr) {
-    for (unsigned int i = 0; i < ficheros.size(); i++) {
-    std::string input_file = "instances/max_div_" + ficheros[i] + ".txt";
-    std::cout << input_file << std::endl;
-    //Greed
-    std::cout << std::endl;
-    for (unsigned int j = 0; j < m_totales.size(); j++) {
-      int m = m_totales[j];
-      InstanceParser ins1(input_file, m);
-      MDPInstance instancia = ins1.parse();
-      GreedyConstructivo *greed1 = new GreedyConstructivo();
-      std::pair<std::string, MDPSolution> resultadoGreed = Benchmark::run(greed1, instancia);
-      std::cout  << input_file << " & " << instancia.getN() << " & " << instancia.getK() << " & " << m << " & "<< resultadoGreed.second.distance() << " & " << resultadoGreed.first << std::endl;
-    }
-        std::cout << std::endl;
-
-    // GRASP I
-    for (unsigned int j = 0; j < m_totales.size(); j++) {
-      int m = m_totales[j];
-      InstanceParser ins1(input_file, m);
-      MDPInstance instancia = ins1.parse();
-      GRASP* grasp1 = new GRASP(100, new LocalSearch);
-      std::pair<std::string, MDPSolution> resultadoGreed = Benchmark::run(grasp1, instancia);
-      std::cout  << input_file << " & " << instancia.getN() << " & " << instancia.getK() << " & " << m << " & " << 100 << " & " << resultadoGreed.second.distance() << " & " << resultadoGreed.first << std::endl;
-    }
-        std::cout << std::endl;
-
-    // GRASP II
-    for (unsigned int j = 0; j < m_totales.size(); j++) {
-      int m = m_totales[j];
-      InstanceParser ins1(input_file, m);
-      MDPInstance instancia = ins1.parse();
-      GRASP* grasp1 = new GRASP(100, new LocalSearch_II);
-      std::pair<std::string, MDPSolution> resultadoGreed = Benchmark::run(grasp1, instancia);
-      std::cout  << input_file << " & " << instancia.getN() << " & " << instancia.getK() << " & " << m << " & " << 100 << " & " << resultadoGreed.second.distance() << " & " << resultadoGreed.first << std::endl;
-    }
-        std::cout << std::endl;
-
-    // TABU 
-    for (unsigned int j = 0; j < m_totales.size(); j++) {
-      int m = m_totales[j];
-      InstanceParser ins1(input_file, m);
-      MDPInstance instancia = ins1.parse();
-      Tabu* tabu1 = new Tabu(100, new LocalSearch);
-      std::pair<std::string, MDPSolution> resultadoGreed = Benchmark::run(tabu1, instancia);
-      std::cout  << input_file << " & " << instancia.getN() << " & " << instancia.getK() << " & " << m << " & " << 100 << " & " << resultadoGreed.second.distance() << " & " << resultadoGreed.first << std::endl;
-    }
-    std::cout << std::endl;
-  }
-  }
   
-  return 0;
 }
 
 int main1(int argc, char **argv) {

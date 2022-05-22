@@ -17,7 +17,7 @@ execution:
 compile_and_exec: main
 	$(PROGRAM)
 
-main: main.o instanceparser.o IOController.o mdpinstance.o mdpsolution.o greedy.o benchmark.o localsearch.o localsearch_II.o grasp.o algoritmo.o mdpfactory.o tabu.o
+main: main.o instanceparser.o IOController.o mdpinstance.o mdpsolution.o greedy.o benchmark.o localsearch.o localsearch_II.o grasp.o algoritmo.o mdpfactory.o tabu.o ramificacion.o
 	$(CC) $(CFLAGS) -o $(PROGRAM) $(BIN)/*.o  
 
 main.o: $(SRC)/main.cpp 
@@ -61,3 +61,6 @@ algoritmo.o: $(SRC)/algoritmo/algoritmo.cpp
 
 mdpfactory.o: $(SRC)/factory/mdpfactory.cpp 
 	$(CC) $(CFLAGS) -c $(SRC)/factory/mdpfactory.cpp -o $(BIN)/mdpfactory.o
+
+ramificacion.o: $(SRC)/algoritmo/ramificacion.cpp 
+	$(CC) $(CFLAGS) -c $(SRC)/algoritmo/ramificacion.cpp -o $(BIN)/ramificacion.o
